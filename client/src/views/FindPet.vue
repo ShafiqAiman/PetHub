@@ -186,11 +186,11 @@ export default {
         .then(response => {
           this.Pets = response.data
 
-          // for (var i = 0; i < this.Houses.length; i++) {
-          //   this.Results.push(this.Houses[i].city)
-          //   this.Results.push(this.Houses[i].get_address)
-          //   this.Results.push(this.Houses[i].address)
-          // }
+          for (var i = 0; i < this.Pets.length; i++) {
+            this.Results.push(this.Pets[i].nameOfPet)
+            this.Results.push(this.Pets[i].typeOfPet)
+            
+          }
         })
         .catch(error => {
           console.log(error)

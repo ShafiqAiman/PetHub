@@ -15,79 +15,46 @@
         <section class="modal-body" id="modalDescription">
           
           <div class="filter">
-            <h5>Property Type: </h5>
+            <h5>Type of Pet: </h5>
             <input type="radio" value="Entire Place" v-model="property" id="entire"/>
-            <label style="margin-left:1%" for="entire">Entire Place</label><br>
+            <label style="margin-left:1%" for="entire">Cat</label><br>
 
             <input type="radio" value="Private Room" v-model="property"  id="privateroom"/>
-            <label style="margin-left:1%" for="privateroom">Private Room</label><br>
+            <label style="margin-left:1%" for="privateroom">Dog</label><br>
 
             <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
-            <label style="margin-left:1%" for="sharedroom">Shared Room</label><br>
+            <label style="margin-left:1%" for="sharedroom">Turtle</label><br>
+
+            <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
+            <label style="margin-left:1%" for="sharedroom">Fish</label><br>
+
+            <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
+            <label style="margin-left:1%" for="sharedroom">Rabbit</label><br>
 
             <input type="radio" value="" v-model="property" id="propertynope"/>
             <label style="margin-left:1%" for="propertynope">I don't mind</label>
           </div>
           
           <div class="filter">
-            <h5>Room : </h5>
+            <h5>Pet Status : </h5>
             <input type="radio" value="Master Bedroom" v-model="room"  id="masterroom"/>
-            <label style="margin-left:1%" for="masterroom">Master Bedroom</label><br>
+            <label style="margin-left:1%" for="masterroom">Adopted</label><br>
 
             <input type="radio" value="Middle Bedroom" v-model="room"  id="middleroom"/>
-            <label style="margin-left:1%" for="middleroom">Middle Bedroom</label><br>
+            <label style="margin-left:1%" for="middleroom">Looking for a new Guardian</label><br>
 
-            <input type="radio" value="Kitchen Bedroom" v-model="room" id="singleroom"/>
-            <label style="margin-left:1%" for="singleroom">Single Bedroom</label><br>
 
             <input type="radio" value="" v-model="room" id="rnope"/>
             <label style="margin-left:1%" for="rnope">I don't mind</label>
           </div>
-          
-          <div class="filter">
-            <h5>Amenities : </h5>
-            <input type="checkbox" value="true" v-model="wifi" id="wifi"/>
-            <label style="margin-left:1%" for="wifi">Wifi</label><br>
-
-            <input type="checkbox" value="true" v-model="parking" id="parking"/>
-            <label style="margin-left:1%" for="parking">Parking</label><br>
-
-            <input type="checkbox" value="true" v-model="gym" id="gym"/>
-            <label style="margin-left:1%" for="gym">Gym</label><br>
-
-            <input type="checkbox" value="true" v-model="furnished" id="furnished"/>
-            <label style="margin-left:1%" for="furnished">Furnished</label><br>
-
-            <input type="checkbox" value="true" v-model="airconditioned" id="airconditioned"/>
-            <label style="margin-left:1%" for="airconditioned">Air-conditioned</label><br>
-
-            <input type="checkbox" value="true" v-model="swimmingpool" id="swimmingpool"/>
-            <label style="margin-left:1%" for="swimmingpool">Swimming Pool</label>
-          </div>
 
           <div class="filter">
-            <h5>Monthly Rent : </h5>
-            <div class="row">
-              <div class="col" style="justify-content:center;">
-                <label style="margin-left:1%" for="budget">Minimum</label><br>
-                <input type="number" style=" width: 100px;" v-model="minBudget" id="minBudget"/>
-              </div>
-
-              <div class="col">
-                <label style="margin-left:1%" for="budget">Maximum</label><br>
-                <input type="number" style=" width: 100px;" v-model="maxBudget" id="maxBudget"/>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="filter">
-            <h5>Gender Friendly:</h5>
+            <h5>Health Status:</h5>
             <input type="radio" value="Male" v-model="gender"  id="male"/>
-            <label style="margin-left:1%" for="male">Male</label><br>
+            <label style="margin-left:1%" for="male">Healthy</label><br>
 
             <input type="radio" value="Female" v-model="gender" id="female"/>
-            <label style="margin-left:1%" for="female">Female</label><br>
+            <label style="margin-left:1%" for="female">Sick</label><br>
 
             <input type="radio" value="" v-model="gender"  id="gnope"/>
             <label style="margin-left:1%" for="gnope">I don't mind</label><br>
@@ -95,108 +62,19 @@
           </div>
 
           <div class="filter">
-            <h5>Occupation Friendly:</h5>
-            <input type="radio" value="Student" v-model="occupation"  id="student"/>
-            <label style="margin-left:1%" for="student">Student</label><br>
+            <h5>Health Status:</h5>
+            <input type="radio" value="Male" v-model="gender"  id="male"/>
+            <label style="margin-left:1%" for="male">Healthy</label><br>
 
-            <input type="radio" value="Working" v-model="occupation" id="working"/>
-            <label style="margin-left:1%" for="working">Working</label><br>
+            <input type="radio" value="Female" v-model="gender" id="female"/>
+            <label style="margin-left:1%" for="female">Sick</label><br>
 
-            <input type="radio" value="Not Working" v-model="occupation" id="notworking"/>
-            <label style="margin-left:1%" for="notworking">Not Working</label><br>
-
-            <input type="radio" value="" v-model="occupation"  id="onope"/>
-            <label style="margin-left:1%" for="onope">I don't mind</label><br>
+            <input type="radio" value="" v-model="gender"  id="gnope"/>
+            <label style="margin-left:1%" for="gnope">I don't mind</label><br>
 
           </div>
 
-          <div class="filter">
-            <h5>Orientation Friendly:</h5>
-            <input type="radio" value="Straight" v-model="orientation"  id="straight"/>
-            <label style="margin-left:1%" for="straight">Straight</label><br>
-
-            <input type="radio" value="Gay" v-model="orientation" id="gay"/>
-            <label style="margin-left:1%" for="gay">Gay</label><br>
-
-            <input type="radio" value="Lesbian" v-model="orientation" id="lesbian"/>
-            <label style="margin-left:1%" for="lesbian">Lesbian</label><br>
-
-            <input type="radio" value="Bisexual" v-model="orientation" id="bisexual"/>
-            <label style="margin-left:1%" for="bisexual">Bisexual</label><br>
-
-            <input type="radio" value="" v-model="orientation"  id="ornope"/>
-            <label style="margin-left:1%" for="ornope">I don't mind</label><br>
-
-          </div>
-
-          <div class="filter">
-            <h5>Pet Friendly: </h5>
-            <input type="radio" value="Yes" v-model="pet" id="yespet"/>
-            <label style="margin-left:1%" for="yespet">Yes</label><br>
-
-            <input type="radio" value="No" v-model="pet"  id="nopet"/>
-            <label style="margin-left:1%" for="nopet">No</label><br>
-
-            <input type="radio" value="" v-model="pet" id="pnope"/>
-            <label style="margin-left:1%" for="pnope">I don't mind</label>
-          </div>
-
-          <div class="filter">
-            <h5>Age Friendly : </h5>
-            <input type="radio" value="18 - 25" v-model="age" id="age1"/>
-            <label style="margin-left:1%" for="age1">18 - 25</label><br>
-
-            <input type="radio" value="26 - 35" v-model="age"  id="age2"/>
-            <label style="margin-left:1%" for="age2">26 - 35</label><br>
-
-            <input type="radio" value="> 35" v-model="age"  id="age3"/>
-            <label style="margin-left:1%" for="age3">> 35</label><br>
-
-            <input type="radio" value="" v-model="age" id="anope"/>
-            <label style="margin-left:1%" for="anope">I don't mind</label>
-          </div>
-
-          <div class="filter">
-            <h5>Smoking Friendly : </h5>
-            <input type="radio" value="Yes" v-model="smoking"  id="nosmoking"/>
-            <label style="margin-left:1%" for="nosmoking">Yes</label><br>
-
-            <input type="radio" value="No" v-model="smoking"  id="nosmoking"/>
-            <label style="margin-left:1%" for="nosmoking">No</label><br>
-
-            <input type="radio" value="" v-model="smoking" id="snope"/>
-            <label style="margin-left:1%" for="snope">I don't mind</label>
-          </div>
-
-          <div class="filter">
-            <h5>Religion Friendly : </h5>
-            <input type="radio" value="Muslim" v-model="religion"  id="muslim"/>
-            <label style="margin-left:1%" for="muslim">Muslim</label><br>
-
-            <input type="radio" value="Buddha" v-model="religion" id="buddha"/>
-            <label style="margin-left:1%" for="buddha">Buddha</label><br>
-
-            <input type="radio" value="Hindu" v-model="religion"  id="hindu"/>
-            <label style="margin-left:1%" for="hindu">Hindu</label><br>
-
-            <input type="radio" value="Christian" v-model="religion" id="christian"/>
-            <label style="margin-left:1%" for="christian">Christian</label><br>
-
-            <input type="radio" value="" v-model="religion" id="rnope"/>
-            <label style="margin-left:1%" for="rnope">I don't mind</label>
-          </div>
-
-          <div class="filter">
-            <h5>Children Friendly : </h5>
-            <input type="radio" value="Yes" v-model="children" id="yeschildren"/>
-            <label style="margin-left:1%" for="yeschildren">Yes</label><br>
-
-            <input type="radio" value="No" v-model="children"  id="nochildren"/>
-            <label style="margin-left:1%" for="nochildren">No</label><br>
-
-            <input type="radio" value="" v-model="children" id="cnope"/>
-            <label style="margin-left:1%" for="cnope">I don't mind</label>
-          </div>
+          
           
         </section>
         <div class="modal-footer filterbtns">
@@ -325,7 +203,7 @@
 
   .filter{
     margin-top: 1%;
-    width: 200px;
+    width: 250px;
     max-height: 500px;
     margin: 2%;
     text-align:left;

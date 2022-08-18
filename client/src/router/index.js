@@ -10,7 +10,7 @@ import Pet from '../views/Pet.vue'
 import Guardian from '../views/Guardian.vue'
 import AddPet from '../views/AddPet.vue'
 import EditProperty from '../views/EditProperty.vue'
-import LeasePayment from '../views/LeasePropertyPayment.vue'
+
 import Settings from '../views/Settings.vue'
 import MyAccount from '../views/MyAccount.vue'
 import EditMyAccount from '../views/EditMyAccount.vue'
@@ -112,14 +112,7 @@ const routes = [
     }
   },
 
-  {
-    path: '/leasepayment',
-    name: 'LeasePayment',
-    component: LeasePayment,
-    meta: {
-      requireLogin: true
-    }
-  },
+  
 
   {
     path: '/findguardian/:housemate_slug',
