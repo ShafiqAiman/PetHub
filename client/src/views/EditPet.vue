@@ -1,45 +1,80 @@
 <template>
     <div class="container wholepage">
-        <div class="createListing">
-            <div style="background-color:white">
-                <div class="Form" id="form">
-                    <h1 style="text-align:center;">Add Pet</h1>
-                    <form @submit.prevent="submitForm" enctype="multipart/form-data" class="formcontent">
-                        <div class="image-upload">
-                            <div class="row">
-                                <div class="column">
-                                    <label for="file-input1">
-                                        <img id="image1" :src="uploadphoto1"/>
-                                    </label>
-                                    <input id="file-input1" type="file" @change="fileChange1" accept="image/png,image/jpeg, image/jpg, image/heic"/>
-                                </div>
-                                <div class="column">
-                                    <div class="row">
-                                        <label for="file-input2">
-                                            <img id="image2" :src="uploadphoto2"/>
-                                        </label>
-                                        <input id="file-input2" type="file" @change="fileChange2" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+        <div class="editListing" style="background-color:white">
+            <div class="Form" id="form">
+                <h1 style="text-align:center;">Edit Property</h1>
+                <form @submit.prevent="submitForm" enctype="multipart/form-data" class="formcontent">
 
-                                        <label for="file-input3">
-                                            <img id="image3" :src="uploadphoto3"/>
-                                        </label>
-                                        <input id="file-input3" type="file" @change="fileChange3" accept="image/png,image/jpeg, image/jpg, image/heic"/>
-                                    </div>
-                                    <div class="row">
-                                        <label for="file-input4">
-                                            <img id="image4" :src="uploadphoto4"/>
-                                        </label>
-                                        <input id="file-input4" type="file" @change="fileChange4" accept="image/png,image/jpeg, image/jpg, image/heic"/>
-                                        <label for="file-input5">
-                                            <img id="image5" :src="uploadphoto5"/>
-                                        </label>
-                                        <input id="file-input5" type="file" @change="fileChange5" accept="image/png,image/jpeg, image/jpg, image/heic"/>
-                                    </div>
+                    <div class="image-upload">
+                        <div class="row">
+                            <div class="column">
+                                <label for="file-input1">
+                                    <div class="propertypicsMain" v-if="uploadphoto1">
+                                            <img class="propertyimagebig" :src="uploadphoto1" alt="no pictures"/>
+                                        </div>
+                                        <div class="propertypicsMain" v-else>
+                                            <img class="propertyimagebig" :src="defaultImage"/>
+                                        </div>
+                                </label>
+                                <input id="file-input1" type="file" @change="fileChange1" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+
+                            </div>
+
+                            <div class="column">
+                                <div class="row">
+
+                                    <label for="file-input2">
+                                        <div class="propertypics" v-if="uploadphoto2">
+                                            <img class="propertyimage" :src="uploadphoto2" alt="no pictures"/>
+                                        </div>
+                                        <div class="propertypics" v-else>
+                                            <img class="propertyimage" :src="defaultImage"/>
+                                        </div>
+                                    </label>
+                                    <input id="file-input2" type="file" @change="fileChange2" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+
+                                    <label for="file-input3">
+                                        <div class="propertypics" v-if="uploadphoto3">
+                                            <img class="propertyimage" :src="uploadphoto3" alt="no pictures"/>
+                                        </div>
+                                        <div class="propertypics" v-else>
+                                            <img class="propertyimage" :src="defaultImage"/>
+                                        </div>
+                                    </label>
+                                    <input id="file-input3" type="file" @change="fileChange3" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+
                                 </div>
+
+                                <div class="row">
+
+                                    <label for="file-input4">
+                                        <div class="propertypics" v-if="uploadphoto4">
+                                            <img class="propertyimage" :src="uploadphoto4" alt="no pictures"/>
+                                        </div>
+                                        <div class="propertypics" v-else>
+                                            <img class="propertyimage" :src="defaultImage"/>
+                                        </div>
+                                    </label>
+                                    <input id="file-input4" type="file" @change="fileChange4" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+
+                                    <label for="file-input5">
+                                        <div class="propertypics" v-if="uploadphoto5">
+                                            <img class="propertyimage" :src="uploadphoto5" alt="no pictures"/>
+                                        </div>
+                                        <div class="propertypics" v-else>
+                                            <img class="propertyimage" :src="defaultImage"/>
+                                        </div>
+                                    </label>
+                                    <input id="file-input5" type="file" @change="fileChange5" accept="image/png,image/jpeg, image/jpg, image/heic"/>
+                                    
+                                </div>
+
                             </div>
                         </div>
-                        <br><br>
-                        <label for="">Name of Pet</label><br>
+                    </div>
+                    <br><br>
+
+                    <label for="">Name of Pet</label><br>
                         <input class="form-control" type="text" v-model="nameOfPet" required><br>
 
                         <label for="">Type of Pet</label><br>
@@ -88,14 +123,15 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength = "500" v-model="description" required></textarea>
                         <br>
 
-                        </form>
-                    </div>
-                    
-                </div>
-        </div>
 
+                    
+                </form>
+                <!-- <button type="submit" class="btn" @click="submitForm">Save</button> -->
+            </div>
+        </div>
         <div class="paymentsection">
-            <button type="submit" class="pay-btn" @click="submitForm" required>Submit</button>
+            <button type="submit" class="pay-btn" @click="submitForm" required>Update</button>
+            
         </div>
     </div>
 </template>
@@ -109,11 +145,12 @@ import uploadphoto2 from '../assets/AddPicture.png'
 import uploadphoto3 from '../assets/AddPicture.png'
 import uploadphoto4 from '../assets/AddPicture.png'
 import uploadphoto5 from '../assets/AddPicture.png'
+import defaultImage from '../assets/defaultPropertyImage.png'
 import axios from 'axios'
 import heic2any from "heic2any"
 
 export default {
-    name:'AddPet',
+    name:'EditPet',
     components: {
       Footer
     },
@@ -125,11 +162,13 @@ export default {
         uploadphoto3:uploadphoto3,
         uploadphoto4:uploadphoto4,
         uploadphoto5:uploadphoto5,
+        defaultImage:defaultImage,
         file1: null,
         file2: null,
         file3: null,
         file4: null,
         file5: null,
+        
         
         profilephoto: ProfilePhoto,
         nameOfPet:'',
@@ -141,38 +180,77 @@ export default {
         healthStatus:'',
         sickDiagnosis:'',
         description:'',
+        AdvertiserID:'',
         
-        user:null,
+        pet:{},
+        advertiser:{},
+        advertiserURL:''
         }
     },
     
     
     mounted(){
-        document.title = 'PetHub | Add Pet' //Title of the page
+        document.title = 'PetHub | Edit Pet' //Title of the page
         this.getUser();
       },
     
     methods:{
-        getUser(){
-            // console.log(this.$store.state.token)
-            axios 
-            .get('/api/v1/users/me/', {
-                headers: {
-                Authorization: "Token "+this.$store.state.token
-            },
-            }) 
-            .then(response => {
-            this.user = response.data
-            const house_slug = this.$route.params.house_slug
-            // console.log(this.user)
-            })
-            .catch(error => {
-            console.log(error)
-            })
+        async getUser(){
+
+            this.$store.commit('setIsLoading', true)
+
+            await axios 
+                .get('/api/v1/users/me/', {
+                    headers: {
+                    Authorization: "Token "+this.$store.state.token
+                },
+                }) 
+                .then(response => {
+                    this.user = response.data
+                    const house_slug = this.$route.params.house_slug
+
+                    axios
+                        .get(`/api/pets/${house_slug}`)
+                        .then(response => {
+                            this.pet = response.data
+                            this.id = this.pet.get_id;
+                            this.uploadphoto1 = this.pet.get_uploadphoto1;
+                            this.uploadphoto2 = this.pet.get_uploadphoto2;
+                            this.uploadphoto3 = this.pet.get_uploadphoto3;
+                            this.uploadphoto4 = this.pet.get_uploadphoto4;
+                            this.uploadphoto5 = this.pet.get_uploadphoto5;
+
+                            this.nameOfPet = this.pet.nameOfPet;
+                            this.typeOfPet= this.pet.typeOfPet,
+                            this.petSpecies=this.pet.petSpecies,
+                            this.petStatus=this.pet.petStatus,
+                            this.priceofSelling= this.pet.priceofSelling,
+                            this.dateofbirth=this.pet.dateofbirth,
+                            this.healthStatus= this.pet.healthStatus,
+                            this.sickDiagnosis= this.pet.sickDiagnosis,
+                            this.description = this.pet.description;
+                            this.AdvertiserID = this.pet.AdvertiserID;
+
+                            
+                            console.log(response.data)
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                })
+                .catch(error => {
+                console.log(error)
+                })
+        this.$store.commit('setIsLoading', false)
+        },
+
+        setDefaultImg(event){
+            event.target.src = "defaultImage"
         },
     
         fileChange1(e){
-            this.file1 = e.target.files[0]            
+            this.file1 = e.target.files[0]
+            
             if(this.file1.name.split('.').pop() == 'heic'){
                 let heic = URL.createObjectURL(this.file1)
 
@@ -308,6 +386,7 @@ export default {
         },
         
         submitForm(){
+
             let formData = new FormData();
             if(this.file1){
                 formData.append('uploadphoto1', this.file1);
@@ -329,52 +408,39 @@ export default {
             formData.append('typeOfPet', this.typeOfPet);
             formData.append('petSpecies', this.petSpecies);
             formData.append('petStatus', this.petStatus);
-            if(this.petStatus == 'Looking for a new Guardian'){
+
+            if(this.petStatus !='Adopted'){
                 formData.append('priceofSelling', this.priceofSelling);
             }else{
-                formData.append('priceofSelling', 0.00);
+                formData.append('priceofSelling', 0);
             }
+
             
             formData.append('dateofbirth', this.dateofbirth);
             formData.append('healthStatus', this.healthStatus);
-            if(this.healthStatus == 'Sick'){
+
+            if(this.healthStatus !='Healthy'){
                 formData.append('sickDiagnosis', this.sickDiagnosis);
             }else{
                 formData.append('sickDiagnosis', '');
             }
             
-            formData.append('description' , this.description);
+            formData.append('description', this.description);
             formData.append('AdvertiserID', this.user.id);
-             
+
+            const house_slug = this.$route.params.house_slug
             axios
-                .post("/api/pets/", formData)
+                .put(`/api/pets/${house_slug}/`, formData)
                 .then(response =>{
-                    axios
-                        .get(`/api/guardians/${this.user.id}/`)
-                        .then(response=>
-                        {
-                            this.housecounter = response.data.petcounter+ 1
-                            let formData1 = new FormData();
-                            formData1.append('HasPet', 'Has A Pet');
-                            formData1.append('petcounter', this.housecounter)
-
-                            axios
-                                .put(`/api/guardians/${this.user.id}/`, formData1)
-                        })
-
-                        .catch(error => {
-                            alert("ERROR!!!")
-                            console.log(error)
-                        })
-
+                    window.confirm("Your pet is updated!")
+                    this.$router.push('/mypets')
+                    
                 })
+
                 .catch(error => {
                     alert("ERROR!!!")
                     console.log(error)
                 })
-
-            window.confirm("Your Property is Leased Successfully!")
-            this.$router.push('/')
             
         }
     }
@@ -384,8 +450,7 @@ export default {
 <style scoped>
     .pay-btn{
         margin-top: 10px;
-        background-color:#DB4914;
-        color: white;
+        background-color:#fbd864;
         height: 50px;
         width: 100px;
         border: 1px solid #ccc;
@@ -393,6 +458,7 @@ export default {
         box-sizing: border-box;
         padding: 5px;
         margin: 2%;
+        align-self: center;
     }
     .wholepage{
         position: relative;
@@ -420,19 +486,11 @@ export default {
         border-radius: 10px;
         border-width: 1px;
     }
-    /* .photosetup{
-        width:200px;
-        height:200px;
-        display:block;
-        margin:0 auto;
-        margin-top: 5%;
-    } */
     .inputfile{
         display: block;
         margin:0 auto;
         width: 100px;
     }
-    
     .amenitiesIcon{
         width: 10%;
         height: 10%;
@@ -452,7 +510,7 @@ export default {
         width: 100%;
         padding: 1%;
     }
-    .h2,.h3, label{
+    .h2, label{
         color: #2e3a4b;
     }
     .image-upload{
@@ -467,7 +525,6 @@ export default {
         display: none;
     }
     .column{
-        /* justify-content: center; */
         float: left;
     }
     .row:after{
@@ -483,36 +540,30 @@ export default {
     .image-upload > .row > .column{
         margin: 1%;
     }
-    #image1{
-        width: 210px;
-        height: 210px;
+    .propertypicsMain{
+        width: 250px;
+        height: 250px;
+        /* width: 80%;
+        height: 80%; */
         padding: 10px;
+        background-size: cover;
         padding-right: 10px;
-        border-radius: 10%;
+        border-radius: 15px;
     }
-    #image2,#image3,#image4,#image5{
-        width: 100px;
-        height: 100px;
+    .propertypics{
+        width: 120px;
+        height: 120px;
+        /* width: 60%;
+        height: 60%; */
+        background-size: cover;
+        overflow: hidden;
         padding: 10px;
-        border-radius: 10%;
     }
-    button{
-        align-self: center;
-    }
-
-    .paymentbills{
-        display: flex;
+    .propertyimagebig, .propertyimage{
         width: 100%;
+        height: 100%;
+        border-radius: 15%;
+        object-fit: scale-down;
+        object-fit: cover;
     }
-
-    .paymentleft{
-        width: 50%;
-    }
-
-    .paymentright{
-        width: 50%;
-        text-align: right;
-    }
-    
-    
 </style>

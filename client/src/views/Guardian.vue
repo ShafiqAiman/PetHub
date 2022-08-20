@@ -70,6 +70,10 @@
                     <div class="card">
                         <h3>{{ housemate.fullname }}'s contact info</h3>
                         <div class="card-body">
+                            <div class="mb-3">
+                                <img class="mr-2" :src="phonenumber" width="20" height="20" alt="">
+                                <span>{{ housemate.phonenumber }}</span>
+                            </div>
                             <template v-if="housemate.igAccount!=='-' || housemate.fbAccount!=='-'">
                                 <h6 class="card-title">Linked social media</h6>
                                 <template v-if="housemate.igAccount!=='-'">
@@ -91,7 +95,7 @@
                                 </template>
                             </template>
                             <template v-else>
-                                <p style="text-align:center;"><i>Contact info not available</i></p>
+                                <p style="text-align:center;"><i>Social Media info is not available</i></p>
                             </template>
                         </div>
                     </div>
@@ -103,12 +107,14 @@
 
 <script>
 import axios from 'axios'
+import phonenumber from '../assets/telephone.png'
+
 export default {
     name: 'Guardian',
     data() {
         return {
             housemate: {},
-            // quantity: 1
+            phonenumber: phonenumber
         }
     },
     mounted() {
@@ -120,7 +126,7 @@ export default {
             const housemate_slug = this.$route.params.housemate_slug
             
             await axios
-                .get(`/djangohousemate/${housemate_slug}`) //from django REST API       ${variable} -> insert variable inside a string
+                .get(`/api/guardian/${housemate_slug}`) //from django REST API       ${variable} -> insert variable inside a string
                 .then(response => {
                     this.housemate = response.data
                     

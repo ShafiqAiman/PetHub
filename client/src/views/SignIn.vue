@@ -48,7 +48,7 @@ export default {
 		}
 	},
 	mounted(){
-		document.title = 'Bed & Buddies | Sign In'
+		document.title = 'PetHub | Sign In'
 	},
 	methods:{
 		async submitForm(){
@@ -80,11 +80,11 @@ export default {
 						this.user = response.data
 						
 						axios
-							.get(`/djangohousemates/${this.user.id}/`)
+							.get(`/api/guardians/${this.user.id}/`)
 							.then(response =>{
 								let profile = response.data
 
-								if(profile.gender !== '-' || profile.occupation !== '-' || profile.orientation !== '-' || profile.religion !== '-' || profile.pet !== '-'){
+								if(profile.gender !== '-' || profile.occupation !== '-'){
 									this.$router.push('/')
 									// this.$router.go(-1);
 								}else{

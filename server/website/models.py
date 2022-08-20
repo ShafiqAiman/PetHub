@@ -46,7 +46,7 @@ class Pet(models.Model):
         return f'/findpet/{self.id}/'
     
     def get_editproperty_url(self):
-        return f'/editproperty/{self.id}/'
+        return f'/editpet/{self.id}/'
 
     def get_age(self):
         current_year = int((date.today()).year)

@@ -26,7 +26,7 @@ export default{
     data(){
         return{
             email:''
-            // christianoronaldo@test.com
+            
         }
     },
     methods:{

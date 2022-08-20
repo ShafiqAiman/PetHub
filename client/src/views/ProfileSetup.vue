@@ -75,21 +75,18 @@ export default {
             email:'',
             dateofbirth:'',
             gender:'',
-            orientation:'Straight',
-            religion:'Muslim',
             occupation:'',
-            pet:'Yes',
-            smoking:'No',
-            children:'No',
+            
             aboutme:'',
             preferredcity:'',
             igAccount:'',
+            fbAccount:'',
             user: null,
             
         }
     },
     mounted(){
-        document.title = 'Bed & Buddies | Profile Setup' //Title of the page
+        document.title = 'PetHub | Profile Setup' //Title of the page
         this.getUser()
         this.getpreferredcity()
         
@@ -98,13 +95,14 @@ export default {
         getUser(){
             
             axios 
-            .get('http://localhost:8000/api/v1/users/me/', {
+            .get('/api/v1/users/me/', {
                 headers: {
                 Authorization: "Token "+this.$store.state.token
             },
             }) 
             .then(response => {
             this.user = response.data
+            console.log(this.user)
             
             })
             .catch(error => {
@@ -152,35 +150,18 @@ export default {
             formData.append('phonenumber', this.phonenumber);
             formData.append('dateofbirth', this.dateofbirth);
             formData.append('gender', this.gender);
-            formData.append('orientation', this.orientation);
-            formData.append('religion', this.religion);
+            
             formData.append('occupation', this.occupation);
-            formData.append('pet', this.pet);
-            formData.append('smoking', this.smoking);
-            formData.append('children', this.children);
+            
             formData.append('aboutme', this.aboutme);
             formData.append('preferredcity', sessionStorage.preferredcity);
             formData.append('igAccount', this.igAccount);
+            formData.append('fbAccount', this.fbAccount);
             
             axios
-                .put(`/djangohousemates/${this.user.id}/`, formData)
-                
-                .then(response =>{
-                    this.profilephoto='https://static.thenounproject.com/png/556457-200.png',
-                    this.file= null,
-                    this.fullname='',
-                    this.phonenumber='',
-                    this.dateofbirth='',
-                    this.gender='',
-                    this.orientation='',
-                    this.religion='',
-                    this.occupation='',
-                    this.pet='',
-                    this.smoking='',
-                    this.children='',
-                    this.aboutme='',
-                    this.igAccount=''
-                    
+                .put(`/api/guardians/${this.user.id}/`, formData)
+                .catch(error => {
+                    console.log(error)
                 })
             
             window.confirm("Your profile is set up successfully!")

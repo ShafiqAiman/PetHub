@@ -14,8 +14,8 @@
           
           <div class="filter">
             <h5>Guardian Type: </h5>
-            <input type="radio" value="Has Pet" v-model="HasPet" id="haspet"/>
-            <label style="margin-left:1%" for="haspet">Has Pet</label><br>
+            <input type="radio" value="Has A Pet" v-model="HasPet" id="haspet"/>
+            <label style="margin-left:1%" for="haspet">Has A Pet</label><br>
 
             <input type="radio" value="Has No Pet" v-model="HasPet"  id="hasnopet"/>
             <label style="margin-left:1%" for="hasnopet">Has No Pet</label><br>

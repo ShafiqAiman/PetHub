@@ -166,7 +166,7 @@ export default {
       this.$store.commit('setIsLoading', true)
 
       await axios  //localhost:8000/djangohouses
-         .get('/djangohouses') //to get data that is converted by Django REST with the help of Axios
+         .get('/api/pets') //to get data that is converted by Django REST with the help of Axios
         .then(response => {
           this.Pets = response.data
 
@@ -193,6 +193,7 @@ export default {
         this.HealthStatus = healthStatus;
         this.PetAge = petAge;
         this.MinAge = minage;
+        
       
       },
       selectedResult(e){

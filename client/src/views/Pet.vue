@@ -59,6 +59,10 @@
                         <div>
                             <h2 class="title">{{ pet.nameOfPet }}</h2>
                             <h3 class="title">{{ pet.get_age }} years old</h3>
+                            <h3 class="title"><mark>{{ pet.petStatus }}</mark></h3>
+                            <template v-if="pet.petStatus == 'Looking for a new Guardian'">
+                                    <p class="title">RM {{ pet.priceofSelling }}</p><br>
+                            </template>
                             
                         </div>
                     </div>
@@ -107,26 +111,9 @@
                                 </div>
                                 
                             </div>
-                            <hr>
+                            
 
-                            <div class="content">
-                                <!-- <h3>Listing Details</h3><br> -->
-                                <div class="row">
-                                    <div class="col-6 col-md-4">
-                                        <h4>Pet Status</h4>
-                                        <p>{{ pet.petStatus }}</p><br>
-                                    </div>
-                                    
-                                    <template v-if="pet.petStatus == 'Looking for a new Guardian'">
-                                        <div class="col-6 col-md-4">
-                                            <h4>Price</h4>
-                                            <p>RM {{ pet.priceofSelling }}</p><br>
-                                        </div>
-                                    </template>
-                                    
-                                </div>
-                                
-                            </div>
+                            
                             
 
 
@@ -160,7 +147,7 @@
 <script>
 import axios from 'axios'
 import defaultImage from '../assets/defaultPropertyImage.png'
-// import { toast } from 'bulma-toast'
+
 export default {
     name: 'Pet',
     data() {
@@ -183,13 +170,13 @@ export default {
             this.$store.commit('setIsLoading', true)
             const house_slug = this.$route.params.house_slug
             await axios
-                .get(`/djangohouse/${house_slug}`) //from django REST API       ${variable} -> insert variable inside a string
+                .get(`/api/pet/${house_slug}`) //from django REST API       ${variable} -> insert variable inside a string
                 .then(response => {
                     this.pet = response.data
                     
                     document.title = 'PetHub | ' + this.pet.nameOfPet
                     axios
-                        .get(`/djangohousemates/${this.pet.AdvertiserID}`) 
+                        .get(`/api/guardians/${this.pet.AdvertiserID}`) 
                         .then(response =>{
                             this.advertiser = response.data
                             this.advertiserURL = this.advertiser.get_absolute_url

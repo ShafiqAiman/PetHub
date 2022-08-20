@@ -174,7 +174,7 @@ export default {
       this.$store.commit('setIsLoading', true)
 
       await axios  
-         .get('/djangohousemates') //to get data that is converted by Django REST with the help of Axios
+         .get('/api/guardians') //to get data that is converted by Django REST with the help of Axios
         .then(response => {
           this.Guardians = response.data
           for (var i = 0; i < this.Guardians.length; i++) {

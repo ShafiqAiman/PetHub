@@ -99,7 +99,7 @@ export default {
                     this.user = response.data
 
                     axios
-                        .get(`/djangohousemates/${this.user.id}/`)
+                        .get(`/api/guardians/${this.user.id}/`)
                         .then(response => {
                             this.myprofile = response.data
                             this.profilephoto = this.myprofile.profilephoto;

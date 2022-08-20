@@ -11,44 +11,44 @@ from rest_framework.decorators import api_view
 from rest_framework import viewsets
 
 from .models import Pet, UserProfile
-from .serializers import PetSerializer, HousemateSerializer
+from .serializers import PetSerializer, GuardianSerializer
 
-class HouseList(viewsets.ModelViewSet):
+class PetList(viewsets.ModelViewSet):
     
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
 
-class HousemateList(viewsets.ModelViewSet):
+class GuardianList(viewsets.ModelViewSet):
     
     
     queryset = UserProfile.objects.all()
-    serializer_class = HousemateSerializer
+    serializer_class = GuardianSerializer
 
 
-class HouseDetail(APIView):
+class PetDetail(APIView):
    
-    def get_object(self, house_slug):
+    def get_object(self, pet_slug):
         try:
-            return Pet.objects.get(id=house_slug)
+            return Pet.objects.get(id=pet_slug)
         except Pet.DoesNotExist:
             raise Http404
     
-    def get(self, request, house_slug, format=None):
-        house = self.get_object(house_slug)
+    def get(self, request, pet_slug, format=None):
+        house = self.get_object(pet_slug)
         serializer = PetSerializer(house)
         return Response(serializer.data)
 
 
-class HousemateDetail(APIView):
+class GuardianDetail(APIView):
     
-    def get_object(self, housemate_slug):
+    def get_object(self, guardian_slug):
         try:
-            return UserProfile.objects.get(username=housemate_slug)
+            return UserProfile.objects.get(username=guardian_slug)
         except UserProfile.DoesNotExist:
             raise Http404
     
-    def get(self, request, housemate_slug, format=None):
-        housemate = self.get_object(housemate_slug)
-        serializer = HousemateSerializer(housemate)
+    def get(self, request, guardian_slug, format=None):
+        housemate = self.get_object(guardian_slug)
+        serializer = GuardianSerializer(housemate)
         return Response(serializer.data)
 

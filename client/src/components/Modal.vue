@@ -115,11 +115,11 @@
         confirm("All filters are cleared! Please click 'Apply Filters' to proceed")
       },
       MinAge(){
-        if (this.age == 3){
+        if (this.petAge == 3){
           this.minage = 0;
-        }else if (this.age == 6){
+        }else if (this.petAge == 6){
           this.minage = 4;
-        }else if (this.age == 500){
+        }else if (this.petAge == 500){
           this.minage = 7;
         }else{
           this.minage = 0;

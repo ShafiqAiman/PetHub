@@ -37,7 +37,7 @@ export default{
         }
     },
     mounted(){
-        document.title = 'Bed & Buddies | Reset Password'
+        document.title = 'PetHub | Reset Password'
         this.getURL()
     },
     methods:{

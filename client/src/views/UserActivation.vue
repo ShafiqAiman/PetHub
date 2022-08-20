@@ -29,7 +29,7 @@ export default {
 		}
 	},
     mounted(){
-        document.title = 'Bed & Buddies | User Activation'
+        document.title = 'PetHub | User Activation'
         this.getURL()
     },
     methods:{

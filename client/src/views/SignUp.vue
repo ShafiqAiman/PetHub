@@ -49,7 +49,7 @@ export default {
 		}
 	},
 	mounted(){
-		document.title = 'Bed & Buddies | Sign Up'
+		document.title = 'PetHub | Sign Up'
 	},
 	methods:{
 		submitForm(){

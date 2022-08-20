@@ -31,24 +31,6 @@
                     <option>Female</option>
                 </select><br><br>
 
-                <label for="">Orientation</label><br>
-                <select class="profileinput" v-model="orientation" required>
-                    <option disabled value="">Please select one</option>
-                    <option>Straight</option>
-                    <option>Gay</option>
-                    <option>Lesbian</option>
-                    <option>Bisexual</option>
-                </select><br><br>
-
-                <label for="">Religion</label><br>
-                <select class="profileinput" v-model="religion" required>
-                    <option disabled value="">Please select one</option>
-                    <option>Muslim</option>
-                    <option>Buddha</option>
-                    <option>Hindu</option>
-                    <option>Christian</option>
-                    <option>Others</option>
-                </select><br><br>
                 <label for="">Occupation</label><br>
                 <select class="profileinput" v-model="occupation" required>
                     <option disabled value="">Please select one</option>
@@ -56,17 +38,11 @@
                     <option>Working</option>
                     <option>Not working</option>
                 </select><br><br>
-                <label for="">Do you have pet?</label><br>
-                <select class="profileinput" v-model="pet" required>
-                    <option disabled value="">Please select one</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </select><br><br>
                 <label for="">About Me <small><em>(250 words)</em></small></label><br>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength = "250" v-model="aboutme" required></textarea>
 
                 <br>
-                <label for="">Preferred City</label><br>
+                <label for="">City Base</label><br>
                 <div id="test1"></div><br><br>
 
                 <label for="">Instagram</label><br>
@@ -136,7 +112,7 @@ export default {
         
     },
     mounted(){
-        document.title = 'Roomah | Edit Account' //Title of the page
+        document.title = 'PetHub | Edit Account' //Title of the page
         this.getUser()
         this.getpreferredcity()
     },
@@ -157,7 +133,7 @@ export default {
                     this.user = response.data
 
                     axios
-                        .get(`/djangohousemates/${this.user.id}/`)
+                        .get(`/api/guardians/${this.user.id}/`)
                         .then(response => {
                             this.myprofile = response.data
                             this.profilephoto = this.myprofile.get_profilephoto;
@@ -226,8 +202,6 @@ export default {
 
         submitForm(){
             
-            let userid = 67
-            
             let formData=new FormData();
             if(this.file){
                 formData.append('profilephoto', this.file);
@@ -247,7 +221,7 @@ export default {
             formData.append('fbAccount', this.fbAccount)
 
             axios
-                .put(`/djangohousemates/${this.user.id}/`, formData)
+                .put(`/api/guardians/${this.user.id}/`, formData)
                 
                 .then(response =>{
                     window.confirm("Your Profile is updated!");
@@ -330,7 +304,7 @@ export default {
     .submitprofilebtn{
         margin-top: 10%;
         
-        background-color:#175B5B;
+        background-color:#DB4914;
         color: white;
         height: 50px;
         width: 120px;

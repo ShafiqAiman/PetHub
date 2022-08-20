@@ -36,7 +36,7 @@ ModelSerializer):
 
         )
 
-class HousemateSerializer(serializers.HyperlinkedModelSerializer):
+class GuardianSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UserProfile
         fields = (

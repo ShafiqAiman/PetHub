@@ -111,7 +111,7 @@ export default {
 
     },
     mounted(){
-        document.title = 'Bed & Buddies | My Account' //Title of the page
+        document.title = 'PetHub | My Account' //Title of the page
         this.getUser()
     },
     methods:{
@@ -129,7 +129,7 @@ export default {
                     this.user = response.data
 
                     axios
-                        .get(`/djangohousemates/${this.user.id}/`)
+                        .get(`/api/guardians/${this.user.id}/`)
                         .then(response => {
                             this.myprofile = response.data
                             

@@ -31,31 +31,12 @@
                                         Enter New Password
                                     </h6>
                                     <input class="form-control" type="password" v-model="NewPassword" required>
-                                    <button class="confirmButton" type="submit">Submit</button>
+                                    <button class="confirmButton" type="submit">Update</button>
                                 </form>
                                 
                             </div>
                         </div>
 
-                        <!-- <div class="emailChange" id="emailmanagement">
-                            <div class="titleDescription">
-                                <h3>
-                                    Change Email
-                                </h3>
-                                <p>
-                                    This email is used to log into your account or receive emails from us.
-                                </p>
-                            </div>
-                            <div class="contents">
-                                <form @submit.prevent="changeEmail">
-                                    <h6>
-                                        Enter New Email
-                                    </h6>
-                                    <input class="form-control" type="email" v-model="newEmail" required>
-                                    <button class="confirmButton">Submit</button>
-                                </form>
-                            </div>
-                        </div> -->
 
                         <div class="usernameChange" id="usernamemanagement">
                             <div class="titleDescription">
@@ -72,7 +53,7 @@
                                         Enter New Username
                                     </h6>
                                     <input class="form-control" type="username" v-model="newUsername" required>
-                                    <button class="confirmButton">Submit</button>
+                                    <button class="confirmButton">Update</button>
                                 </form>
                             </div>
                         </div>
@@ -115,7 +96,7 @@
 
                                     <input type="radio" id="reason7" value="Others" v-model="deactivatereason" />
                                     <label for="reason7">Others</label>
-                                    <button class="confirmButton">Submit</button>
+                                    <button class="confirmButton">Deactivate</button>
                                 </form>
                                 
                             </div>
@@ -147,7 +128,7 @@ export default
             deactivatereason:''
         }
     },mounted(){
-      document.title = 'Bed & Buddies | Settings' //Title of the page
+      document.title = 'PetHub | Settings' //Title of the page
       this.getUser()
     },
     methods:{
@@ -347,7 +328,7 @@ button:active
 .contents
 {
     flex:50%;
-    background-color: rgb(192, 190, 184);
+    background-color: white;
     width:50%;
     padding:5%;
 }
@@ -355,7 +336,7 @@ button:active
 .titleDescription
 {
     flex:50%;
-    background-color: rgb(231, 229, 229);
+    background-color: #DB4914;
     width:50%;
     padding:5%;
 }

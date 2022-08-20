@@ -16,11 +16,11 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal ">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+            <h2 class="featurette-heading fw-normal ">The first social media for pets! <span class="text-muted">It’ll blow your mind.</span></h2>
+            <p class="lead">Let's give our pet an exposure to social media world.</p>
           </div>
           <div class="col-md-5">
-            <img class="pic" src="https://d.newsweek.com/en/full/1630892/cat-stock-getty.jpg" height="400" width="400" alt="">
+            <img class="pic" :src="PetSocMed" alt="PetSocialMedia">
 
           </div>
         </div>
@@ -29,12 +29,11 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+            <h2 class="featurette-heading fw-normal lh-1">A platform to help animals to find a loving home. <span class="text-muted">Every animal deserves love!</span></h2>
+            <p class="lead">One of the best platforms to help all animals out there finding a shelter and loving guardian.</p>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="pic" src="https://apicms.thestar.com.my/uploads/images/2020/09/24/873188.jpg" height="400" width="400" alt="">
-
+            <img class="pic" :src="PetHome" alt="PetSocialMedia">
           </div>
         </div>
 
@@ -42,11 +41,11 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+            <h2 class="featurette-heading fw-normal lh-1">And lastly, a platform for sharing tips and advices. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Considering this is the platform for all pet lovers, you are able to get tips and advices from other guardians on how to give the best love to your pet.</p>
           </div>
           <div class="col-md-5">
-            <img class="pic" src="https://www.theladders.com/wp-content/uploads/dog-cat-190709-800x450.jpg" height="400" width="400" alt="">
+            <img class="pic" :src="SharingAdvices" alt="PetSocialMedia">
 
           </div>
         </div>
@@ -67,6 +66,10 @@
   import Modal from '../components/Modal.vue';
   import Footer from '../components/Footer.vue';
 
+  import PetSocMed from '../assets/PetSocMed.jpg'
+  import PetHome from '../assets/ProvideHome.jpg'
+  import SharingAdvices from '../assets/SharingAdvices.jpg'
+
   export default {
     name: 'Home',
     components: {
@@ -77,6 +80,9 @@
     data() {
       return {
         isModalVisible: false,
+        PetSocMed: PetSocMed,
+        PetHome: PetHome,
+        SharingAdvices: SharingAdvices
       };
     },
     mounted(){
@@ -166,7 +172,7 @@
 
   .pic{
     object-fit: cover;
-    
+    width: 100%;
   }
 
   

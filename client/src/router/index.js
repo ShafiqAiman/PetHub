@@ -9,12 +9,11 @@ import FindGuardian from '../views/FindGuardian.vue'
 import Pet from '../views/Pet.vue'
 import Guardian from '../views/Guardian.vue'
 import AddPet from '../views/AddPet.vue'
-import EditProperty from '../views/EditProperty.vue'
+import EditPet from '../views/EditPet.vue'
 
 import Settings from '../views/Settings.vue'
 import MyAccount from '../views/MyAccount.vue'
 import EditMyAccount from '../views/EditMyAccount.vue'
-import Pricing from '../views/Pricing.vue'
 
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
@@ -104,9 +103,9 @@ const routes = [
   },
 
   {
-    path: '/editproperty/:house_slug',
-    name: 'EditProperty',
-    component: EditProperty,
+    path: '/editpet/:house_slug',
+    name: 'EditPet',
+    component: EditPet,
     meta: {
       requireLogin: true
     }
@@ -149,11 +148,6 @@ const routes = [
     
   },
 
-  {
-    path: '/pricing',
-    name: 'Pricing',
-    component: Pricing
-  },
 
   {
     path: '/help',

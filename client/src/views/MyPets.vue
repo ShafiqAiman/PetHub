@@ -5,7 +5,7 @@
           <div class="col-xs-1 col-md-12">
             <div class="intro">
               <h1>My Pets</h1>
-              <a href="/leaseproperty" class="nav-link" style="color:white;">
+              <a href="/addpet" class="nav-link" style="color:white;">
                 <button id="addPropertyButton">
                 <img src="../assets/add.png" class="plusIcon">
                 Add a pet
@@ -113,7 +113,7 @@ export default {
         this.$store.commit('setIsLoading', true)
        
         await axios  //localhost:8000/djangohouses
-            .get('/djangohouses') //to get data that is converted by Django REST with the help of Axios
+            .get('/api/pets') //to get data that is converted by Django REST with the help of Axios
             .then(response => {
             this.Pets = response.data
             console.log(this.Pets)
@@ -129,26 +129,26 @@ export default {
         deleteHouse(tempID)
         {
             axios
-            .delete(`/djangohouses/${tempID}/`)
+            .delete(`/api/pets/${tempID}/`)
             .then(response=> 
             {
-                window.confirm("House deleted")
+                window.confirm("Pet is deleted")
 
                axios
-                .get(`/djangohousemates/${this.user.id}/`)
+                .get(`/api/guardians/${this.user.id}/`)
                 .then(response=>
                 {
-                    this.temphousecounter = response.data.housecounter - 1
+                    this.temphousecounter = response.data.petcounter - 1
                       let formData1 = new FormData()
                       formData1.append('petcounter', this.temphousecounter)
                       axios
-                        .put(`/djangohousemates/${this.user.id}/`, formData1)
+                        .put(`/api/guardians/${this.user.id}/`, formData1)
                         .then(response=>
                           {
                             if(this.temphousecounter==0)
                             {
                               axios
-                                .put(`/djangohousemates/${this.user.id}/`, {'HasPet':'Has No Pet'})
+                                .put(`/api/guardians/${this.user.id}/`, {'HasPet':'Has No Pet'})
                                 .then(response=>
                                   {
                                      
