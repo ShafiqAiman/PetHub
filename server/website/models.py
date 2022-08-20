@@ -92,7 +92,7 @@ class UserProfile(models.Model):
     
     occupation = models.CharField(max_length=255,null=True, default='-')
     aboutme = models.CharField(max_length=255,null=True, default='-')
-    HasRoom = models.CharField(max_length=255,null=True, default='Needs A Place') #By default everyone will be registered as 'Needs A Place' until they posted a property, then this value will be changed
+    HasPet = models.CharField(max_length=255,null=True, default='Has No Pet') #By default everyone will be registered as 'Needs A Place' until they posted a property, then this value will be changed
     
     profilephoto = models.ImageField(upload_to='profilephoto/', blank=True, null=True)
     preferredcity = models.CharField(max_length=255,null=True, default='-')

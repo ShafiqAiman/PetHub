@@ -59,22 +59,14 @@
                                     <td>{{housemate.preferredcity}}</td>
                                 </tr>
                             </table>
+                            <br>
+                            <div id="map-div"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 py-auto">
-                    <!-- <div class="card">
-                        <h6>Contact {{housemate.fullname}} now!</h6>
-                        <div class="d-flex justify-content-around">
-                            <div>
-                                <img class="icon" src="../assets/telephone.png">
-                            </div>
-                            <div>
-                                <img class="icon" src="../assets/chat.png">
-                            </div>
-                        </div>
-                    </div> -->
+                    
                     <div class="card">
                         <h3>{{ housemate.fullname }}'s contact info</h3>
                         <div class="card-body">
@@ -132,7 +124,21 @@ export default {
                 .then(response => {
                     this.housemate = response.data
                     
-                    document.title = 'Bed & Buddies | ' + this.housemate.fullname
+                    document.title = 'PetHub | ' + this.housemate.fullname
+
+                    tt.services.fuzzySearch({
+                    key: 'Krt6AzTDcWZRX5OQYcRJmGxCj5XCvi4h',
+                    query: this.housemate.preferredcity
+                    })
+                    
+                    .then(function(response) {
+                    var map = tt.map({
+                        key: 'Krt6AzTDcWZRX5OQYcRJmGxCj5XCvi4h',
+                        container: 'map-div',
+                        center: response.results[0].position,
+                        zoom: 16
+                    });
+                    });
                 })
                 .catch(error => {
                     console.log(error)
@@ -269,4 +275,6 @@ td {
 .profilephoto{
     object-fit: cover;
 }
+
+#map-div { width: 100%; height: 300px; }
 </style>

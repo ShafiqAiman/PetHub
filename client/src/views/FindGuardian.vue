@@ -33,30 +33,30 @@
               <button type="button" class="my-button" @click="showModal"><img class="filterIcon" src="../assets/FilterIcon.png" alt="">Filters</button><br>
             </div>
             
-            <div class="posts" v-for="housemate in filteredPosts.slice((currentPage-1) * perPage,(currentPage-1) * perPage+perPage)" :key="housemate.id">
-              <router-link :to="housemate.get_absolute_url" style="text-decoration:none;">
+            <div class="posts" v-for="guardian in filteredPosts.slice((currentPage-1) * perPage,(currentPage-1) * perPage+perPage)" :key="guardian.id">
+              <router-link to="" style="text-decoration:none;" @click="newWindow(guardian.get_absolute_url)">
                 <figure class="polaroid">
-                  <template v-if="housemate.get_profilephoto==''">
+                  <template v-if="guardian.get_profilephoto==''">
                     <img src="../assets/defaultprofilepicture.png" class="profilephoto">
                   </template>
                   <template v-else>
-                    <img :src="housemate.get_profilephoto" class="profilephoto">
+                    <img :src="guardian.get_profilephoto" class="profilephoto">
                   </template>
                     <div class="container">
                       <div style="height:80px">
-                        <h3 class="title">{{ housemate.fullname }}, {{ housemate.age }}</h3>
+                        <h3 class="title">{{ guardian.fullname }}, {{ guardian.age }}</h3>
                       </div>
                       
                       
-                      
-                      <p class="profilepostcontent" style="font-style:italic">{{ housemate.occupation }}</p>
+                      <b class="profilepostcontent"><mark>{{ guardian.HasPet }}</mark></b><br><br>
+                      <p class="profilepostcontent" style="font-style:italic">{{ guardian.occupation }}</p>
                       
                       <div style="height:60px">
-                      <template v-if="housemate.aboutme.length > 75">
-                          <p class="profilepostcontent" style="font-size: 14px;font-style:italic">{{ housemate.aboutme.substring(0,75)+'...' }}</p>
+                      <template v-if="guardian.aboutme.length > 75">
+                          <p class="profilepostcontent" style="font-size: 14px;font-style:italic">{{ guardian.aboutme.substring(0,75)+'...' }}</p>
                       </template>
                       <template v-else>
-                          <p class="profilepostcontent" style="font-size: 14px;font-style:italic">{{ housemate.aboutme }}</p>
+                          <p class="profilepostcontent" style="font-size: 14px;font-style:italic">{{ guardian.aboutme }}</p>
                       </template>
                         
                       </div>
@@ -117,38 +117,30 @@ export default {
       user: {},
       isModalVisible: false,
       search:'',
-      Housemates:[],
+      Guardians:[],
       names:[],
 
       perPage:6,
       currentPage: 1,
       TotalPages: 1,
 
-      HousemateType:'',
+      HasPet:'',
       Age:1000,
       MinAge:0,
       Gender:'',
-      Religion:'',
       Occupation:'',
-      Pet:'',
-      Smoking:'',
-      Children:'',
-      Orientation:'',
+      
+      
       
 
-      filterhousematetype:'',
+      filterhaspet:'',
       filterage:'',
       filtergender:'',
-      filterreligion:'',
       filteroccupation:'',
-      filterpet:'',
       filterSearch:'',
       filteroutmyprofile: '',
       filteroutdefault: '',
 
-      filtersmoking:'',
-      filterchildren:'',
-      filtertorientation:''
     }
   },
   mounted(){
@@ -184,15 +176,12 @@ export default {
       await axios  
          .get('/djangohousemates') //to get data that is converted by Django REST with the help of Axios
         .then(response => {
-          this.Housemates = response.data
-          for (var i = 0; i < this.Housemates.length; i++) {
-            this.names.push(this.Housemates[i].fullname)
-            this.names.push(this.Housemates[i].preferredcity)
+          this.Guardians = response.data
+          for (var i = 0; i < this.Guardians.length; i++) {
+            this.names.push(this.Guardians[i].fullname)
+            this.names.push(this.Guardians[i].preferredcity)
           }
 
-        
-          // console.log(this.Housemates)
-          // console.log(this.names)
         })
         .catch(error => {
           console.log(error)
@@ -204,20 +193,14 @@ export default {
       showModal() {
           this.isModalVisible = true;
       },
-      closeModal(housematetype, age, minage, gender, religion, occupation, pet, smoking, children, orientation) {
+      closeModal(HasPet, age, minage, gender, occupation) {
         this.isModalVisible = false;
-        this.HousemateType = housematetype;
+        this.HasPet = HasPet;
         this.Age = age;
         this.MinAge = minage;
         this.Gender = gender;
-        this.Religion = religion;
         this.Occupation = occupation;
-        this.Pet = pet;
-        this.Orientation = orientation;
-        this.Smoking = smoking;
-        this.Children = children;
 
-        // console.log(this.MinAge);
       },
       selectedResult(e){
         this.search = e;
@@ -242,6 +225,9 @@ export default {
 
                 
         },
+        newWindow(url){
+        window.open(url)
+      }
       
     
   },
@@ -250,35 +236,33 @@ export default {
 
       
         
-      //Filter Results (Housemate Type)                             //Data from database                   //Data from Modal
-      this.filterhousematetype = this.Housemates.filter(housemate => housemate.HasRoom.toLowerCase().includes(this.HousemateType.toLowerCase()))
+      //Filter Results (guardian Type)                             //Data from database                   //Data from Modal
+      this.filterhaspet = this.Guardians.filter(guardian => guardian.HasPet.toLowerCase().includes(this.HasPet.toLowerCase()))
 
       //Filter Results (Age) 
-      this.filterage = this.filterhousematetype.filter(housemate => (housemate.age <= this.Age) && (housemate.age >= this.MinAge))
+      this.filterage = this.filterhaspet.filter(guardian => (guardian.age <= this.Age) && (guardian.age >= this.MinAge))
 
       //Filter Results (Gender)
-      this.filtergender = this.filterage.filter(housemate => housemate.gender.includes(this.Gender))
+      this.filtergender = this.filterage.filter(guardian => guardian.gender.includes(this.Gender))
 
-      
 
       //Filter Results (Occupation)
-      this.filteroccupation = this.filterage.filter(housemate => housemate.occupation.toLowerCase().includes(this.Occupation.toLowerCase()))
+      this.filteroccupation = this.filtergender.filter(guardian => guardian.occupation.toLowerCase().includes(this.Occupation.toLowerCase()))
 
       
-      this.filteroutmyprofile = this.filteroccupation.filter(housemate => housemate.id != this.user.id)
+      this.filteroutmyprofile = this.filteroccupation.filter(guardian => guardian.id != this.user.id)
 
-      this.filteroutdefault = this.filteroutmyprofile.filter(housemate => housemate.fullname != "Buddy")
+      this.filteroutdefault = this.filteroutmyprofile.filter(guardian => guardian.fullname != "Buddy")
 
       // Filter Results (Search)
-      this.filterSearch = this.filteroutdefault.filter(housemate => housemate.fullname.toLowerCase().includes(this.search.toLowerCase()) 
-      || housemate.preferredcity.toLowerCase().includes(this.search.toLowerCase())
+      this.filterSearch = this.filteroutdefault.filter(guardian => guardian.fullname.toLowerCase().includes(this.search.toLowerCase()) 
+      || guardian.preferredcity.toLowerCase().includes(this.search.toLowerCase())
       )
 
       //Return Final Results
       this.TotalPages = Math.ceil(this.filterSearch.length/this.perPage)
       
       return this.filterSearch
-      // return this.filterpet
     }
   }
 }
@@ -406,6 +390,7 @@ export default {
 
     .profilepostcontent{
         text-align: center;
+        color: black;
     }
 
     .title{

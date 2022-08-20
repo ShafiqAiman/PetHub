@@ -166,6 +166,7 @@
 
   .pic{
     object-fit: cover;
+    
   }
 
   

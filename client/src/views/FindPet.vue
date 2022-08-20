@@ -2,7 +2,7 @@
   <div class="wholepage">
     <header class="jumbotron jumbotron-fluid text-center">
       <div class="container">
-        <h3 class="header">You are looking for a place to stay</h3>
+        <h3 class="header">Find Pet</h3>
         <form action="">
           <div class="center-block">    
             <SearchAutocomplete
@@ -49,9 +49,9 @@
                       </div>
                       <div>
                         
-                        <b class="postcontent">{{ pet.typeOfPet }}</b><br><br>
+                        <b class="postcontent"><mark>{{ pet.petStatus }}</mark></b><br><br>
+                        <p class="postcontent">{{ pet.typeOfPet }}</p>
                         <p class="postcontent">{{ pet.petSpecies }}</p>
-                        <p class="postcontent">{{ pet.petStatus }}</p>
                         <p class="postcontent">{{ pet.description }}</p>
                       </div>
                     </div>
@@ -122,35 +122,19 @@ export default {
       currentPage: 1,
       TotalPages: 1,
       
-      
-      nameOfPet:'',
-      typeOfPet:'',
-      petSpecies:'',
-      petStatus:'',
-      priceofSelling:0,
-      dateofbirth:'',
-      healthStatus:'',
-      sickDiagnosis:'',
-      description:'',
-
-      NameOfPet:'',
       TypeOfPet:'',
-      PetSpecies:'',
       PetStatus:'',
-      PriceofSelling:0,
-      Dateofbirth:'',
       HealthStatus:'',
-      SickDiagnosis:'',
+      PetAge:1000,
+      MinAge:0,
+      
 
       filterSearch:'',
-      filternameOfPet:'',
       filtertypeOfPet:'',
-      filterpetSpecies:'',
       filterpetStatus:'',
-      filterpriceofSelling:'',
-      filterdateofbirth:'',
       filterhealthStatus:'',
-      filtersickDiagnosis:'',
+      filterage:'',
+      
 
       defaultImage:defaultImage,
     }
@@ -201,29 +185,15 @@ export default {
       showModal() {
           this.isModalVisible = true;
       },
-      closeModal(property, room, wifi, parking, gym, furnished, airconditioned, swimmingpool, minBudget, maxBudget, gender, occupation, orientation, pet, age, smoking, religion, children) {
+      closeModal(typeOfPet, petStatus, healthStatus, petAge, minage) {
         this.isModalVisible = false;
-        sessionStorage.room = room;
-        this.Room = room;
-        this.Wifi = wifi;
-        this.Parking = parking;
-        this.Gym = gym;
-        this.Furnished = furnished;
-        this.Airconditioned = airconditioned;
-        this.Swimmingpool = swimmingpool;
-        this.Property = property;
-        this.MinBudget = parseFloat(minBudget);
-        this.MaxBudget = parseFloat(maxBudget);
-        this.Gender = gender;
-        this.Occupation = occupation;
-        this.Orientation = orientation;
-        this.Age = age;
-        this.Religion = religion;
-        this.Smoking = smoking;
-        this.Pet = pet;
         
-        this.Children = children;
-        
+        this.TypeOfPet = typeOfPet;
+        this.PetStatus = petStatus;
+        this.HealthStatus = healthStatus;
+        this.PetAge = petAge;
+        this.MinAge = minage;
+      
       },
       selectedResult(e){
         this.search = e;
@@ -235,12 +205,17 @@ export default {
   },
   computed:{
     filteredPosts(){
-      //Filter Results (Accommodation Type)
-      this.filternameOfPet= this.Pets.filter(pet => pet.nameOfPet.toLowerCase().includes(this.NameOfPet.toLowerCase()))
+      //Filter Results (Pet)
       
-      this.filterSearch = this.filternameOfPet.filter(pet => pet.nameOfPet.toLowerCase().includes(this.search.toLowerCase()))
+      
+      
+      this.filtertypeOfPet = this.Pets.filter(pet => pet.typeOfPet.toLowerCase().includes(this.TypeOfPet.toLowerCase()))
+      this.filterpetStatus = this.filtertypeOfPet.filter(pet => pet.petStatus.toLowerCase().includes(this.PetStatus.toLowerCase()))
+      this.filterhealthStatus = this.filterpetStatus.filter(pet => pet.healthStatus.toLowerCase().includes(this.HealthStatus.toLowerCase()))
+      this.filterage = this.filterhealthStatus.filter(pet => (pet.get_age <= this.PetAge) && (pet.get_age >= this.MinAge))
+      this.filterSearch = this.filterage.filter(pet => pet.nameOfPet.toLowerCase().includes(this.search.toLowerCase()))
 
-      this.TotalPages = Math.ceil(this.filterSearch.length/this.perPage)
+      this.TotalPages = Math.ceil(this.filterhealthStatus.length/this.perPage)
       
 
 
@@ -372,8 +347,9 @@ export default {
       box-sizing: border-box;
 		}
 
-    .profilepostcontent{
+    .postcontent{
         text-align: center;
+        color: black;
     }
 
     .title{

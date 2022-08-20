@@ -6,71 +6,74 @@
 
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLongTitle">Filter</h2>
-          <button type="button" class="close" @click="$emit('close', property, room, wifi, parking, gym, furnished, airconditioned, swimmingpool, minBudget, maxBudget, smoking, pet, children)" aria-label="Close modal" >
+          <button type="button" class="close" @click="$emit('close', typeOfPet, petStatus, healthStatus, petAge, minage)" aria-label="Close modal" >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
-        <h3 class="modalsection">House Preferences</h3>
+        <h3 class="modalsection">Pet Preferences</h3>
         <section class="modal-body" id="modalDescription">
           
           <div class="filter">
             <h5>Type of Pet: </h5>
-            <input type="radio" value="Entire Place" v-model="property" id="entire"/>
-            <label style="margin-left:1%" for="entire">Cat</label><br>
+            <input type="radio" value="Cat" v-model="typeOfPet" id="cat"/>
+            <label style="margin-left:1%" for="cat">Cat</label><br>
 
-            <input type="radio" value="Private Room" v-model="property"  id="privateroom"/>
-            <label style="margin-left:1%" for="privateroom">Dog</label><br>
+            <input type="radio" value="Dog" v-model="typeOfPet"  id="dog"/>
+            <label style="margin-left:1%" for="dog">Dog</label><br>
 
-            <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
-            <label style="margin-left:1%" for="sharedroom">Turtle</label><br>
+            <input type="radio" value="Turtle" v-model="typeOfPet" id="turtle"/>
+            <label style="margin-left:1%" for="turtle">Turtle</label><br>
 
-            <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
-            <label style="margin-left:1%" for="sharedroom">Fish</label><br>
+            <input type="radio" value="Fish" v-model="typeOfPet" id="fish"/>
+            <label style="margin-left:1%" for="fish">Fish</label><br>
 
-            <input type="radio" value="Shared Room" v-model="property" id="sharedroom"/>
-            <label style="margin-left:1%" for="sharedroom">Rabbit</label><br>
+            <input type="radio" value="Rabbit" v-model="typeOfPet" id="rabbit"/>
+            <label style="margin-left:1%" for="rabbit">Rabbit</label><br>
 
-            <input type="radio" value="" v-model="property" id="propertynope"/>
-            <label style="margin-left:1%" for="propertynope">I don't mind</label>
+            <input type="radio" value="" v-model="typeOfPet" id="typepetnope"/>
+            <label style="margin-left:1%" for="typepetnope">I don't mind</label>
           </div>
           
           <div class="filter">
             <h5>Pet Status : </h5>
-            <input type="radio" value="Master Bedroom" v-model="room"  id="masterroom"/>
-            <label style="margin-left:1%" for="masterroom">Adopted</label><br>
+            <input type="radio" value="Adopted" v-model="petStatus"  id="adopted"/>
+            <label style="margin-left:1%" for="adopted">Adopted</label><br>
 
-            <input type="radio" value="Middle Bedroom" v-model="room"  id="middleroom"/>
-            <label style="margin-left:1%" for="middleroom">Looking for a new Guardian</label><br>
+            <input type="radio" value="Looking for a new Guardian" v-model="petStatus"  id="lookguardian"/>
+            <label style="margin-left:1%" for="lookguardian">Looking for a new Guardian</label><br>
 
 
-            <input type="radio" value="" v-model="room" id="rnope"/>
-            <label style="margin-left:1%" for="rnope">I don't mind</label>
+            <input type="radio" value="" v-model="petStatus" id="petstatusnope"/>
+            <label style="margin-left:1%" for="petstatusnope">I don't mind</label>
           </div>
 
           <div class="filter">
             <h5>Health Status:</h5>
-            <input type="radio" value="Male" v-model="gender"  id="male"/>
+            <input type="radio" value="Healthy" v-model="healthStatus"  id="healthy"/>
             <label style="margin-left:1%" for="male">Healthy</label><br>
 
-            <input type="radio" value="Female" v-model="gender" id="female"/>
+            <input type="radio" value="Sick" v-model="healthStatus" id="sick"/>
             <label style="margin-left:1%" for="female">Sick</label><br>
 
-            <input type="radio" value="" v-model="gender"  id="gnope"/>
-            <label style="margin-left:1%" for="gnope">I don't mind</label><br>
+            <input type="radio" value="" v-model="healthStatus"  id="healthnope"/>
+            <label style="margin-left:1%" for="healthnope">I don't mind</label><br>
 
           </div>
 
           <div class="filter">
-            <h5>Health Status:</h5>
-            <input type="radio" value="Male" v-model="gender"  id="male"/>
-            <label style="margin-left:1%" for="male">Healthy</label><br>
+            <h5>Pet Age:</h5>
+            <input type="radio" value=3 v-model="petAge" @change="MinAge" id="three"/>
+            <label style="margin-left:1%" for="three">1 - 3</label><br>
 
-            <input type="radio" value="Female" v-model="gender" id="female"/>
-            <label style="margin-left:1%" for="female">Sick</label><br>
+            <input type="radio" value=6 v-model="petAge" @change="MinAge" id="six"/>
+            <label style="margin-left:1%" for="six">4 - 6</label><br>
 
-            <input type="radio" value="" v-model="gender"  id="gnope"/>
-            <label style="margin-left:1%" for="gnope">I don't mind</label><br>
+            <input type="radio" value=500 v-model="petAge" @change="MinAge" id="moresix"/>
+            <label style="margin-left:1%" for="moresix">> 6</label><br>
+
+            <input type="radio" value=1000 v-model="petAge" @change="MinAge"  id="agenope"/>
+            <label style="margin-left:1%" for="agenope">I don't mind</label><br>
 
           </div>
 
@@ -78,7 +81,7 @@
           
         </section>
         <div class="modal-footer filterbtns">
-          <button type="button" class="filter-btn" @click="$emit('close', property, room, wifi, parking, gym, furnished, airconditioned, swimmingpool, minBudget, maxBudget, gender, occupation, orientation, pet, age, smoking, religion, children)" aria-label="Close modal">
+          <button type="button" class="filter-btn" @click="$emit('close', typeOfPet, petStatus, healthStatus, petAge, minage)" aria-label="Close modal">
               Apply Filters
           </button>
           <button type="button" style="background-color:red;color:white;" class="filter-btn" @click="reset"  aria-label="Close modal">
@@ -95,48 +98,33 @@
     name: 'Modal',
     data(){
       return{
-        property:'',
-        room:'',
-        wifi:'',
-        parking:'',
-        gym:'',
-        furnished:'',
-        airconditioned:'',
-        swimmingpool:'',
-        minBudget:0,
-        maxBudget:100000,
-        gender:'',
-        occupation:'',
-        orientation:'',
-        religion:'',
-        age: '',
-        smoking:'',
-        children:'',
-        pet:''
+        typeOfPet:'',
+        petStatus:'',
+        healthStatus:'',
+        petAge: 1000,
+        minage:0,
+        
       }
     },
     methods: {
       reset() {
-        this.property = '';
-        this.room = '';
-        this.wifi='';
-        this.parking='';
-        this.gym='';
-        this.furnished='';
-        this.airconditioned='';
-        this.swimmingpool='';
-        this.minBudget=0;
-        this.maxBudget=100000;
-        this.gender = '';
-        this.occupation = '';
-        this.orientation = '';
-        this.religion='',
-        this.age='';
-        this.smoking='';
-        this.children='';
-        this.pet='';
+        this.typeOfPet = '';
+        this.petStatus = '';
+        this.healthStatus = '';
+        this.petAge = 1000
         confirm("All filters are cleared! Please click 'Apply Filters' to proceed")
       },
+      MinAge(){
+        if (this.age == 3){
+          this.minage = 0;
+        }else if (this.age == 6){
+          this.minage = 4;
+        }else if (this.age == 500){
+          this.minage = 7;
+        }else{
+          this.minage = 0;
+        }
+      }
       
     },
   };

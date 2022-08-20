@@ -52,10 +52,8 @@ class HousemateSerializer(serializers.HyperlinkedModelSerializer):
             "dateofbirth",
             "age",
             "gender",
-            
             "occupation",
-            "HasRoom",
-            
+            "HasPet",
             "aboutme",
             "preferredcity",
             "igAccount",
