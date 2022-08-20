@@ -348,34 +348,30 @@ export default {
              
             axios
                 .post("/djangohouses/", formData)
-                // .then(response =>{
-                //     this.uploadphoto1=uploadphoto1,
-                //     this.uploadphoto2=uploadphoto2,
-                //     this.uploadphoto3=uploadphoto3,
-                //     this.uploadphoto4=uploadphoto4,
-                //     this.uploadphoto5=uploadphoto5,
-                //     this.file1= null,
-                //     this.file2=null,
-                //     this.file3= null,
-                //     this.file4=null,
-                //     this.file5= null,
+                .then(response =>{
+                    axios
+                        .get(`/djangohousemates/${this.user.id}/`)
+                        .then(response=>
+                        {
+                            this.housecounter = response.data.petcounter+ 1
+                            let formData1 = new FormData();
+                            formData1.append('HasPet', 'Has A Pet');
+                            formData1.append('petcounter', this.housecounter)
 
-                //     this.nameOfPet='',
-                //     this.typeOfPet='',
-                //     this.petSpecies='',
-                //     this.city='',
-                //     this.building='',
-                //     this.zipcode='',
-                //     this.typeOfListing='',
-                //     this.typeOfRoom='',
-                    
-                //     this.totalBathrooms=0,
-                //     this.totalBedrooms=0,
-                //     this.monthlyRent=0,
-                //     this.deposit=0,
-                //     this.description=''
+                            axios
+                                .put(`/djangohousemates/${this.user.id}/`, formData1)
+                        })
 
-                // })
+                        .catch(error => {
+                            alert("ERROR!!!")
+                            console.log(error)
+                        })
+
+                })
+                .catch(error => {
+                    alert("ERROR!!!")
+                    console.log(error)
+                })
 
             window.confirm("Your Property is Leased Successfully!")
             this.$router.push('/')

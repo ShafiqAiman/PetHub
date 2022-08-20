@@ -22,7 +22,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import ForgotPasswordConfirmation from '../views/ForgotPasswordConfirmation.vue'
 import UserActivation from '../views/UserActivation.vue'
 import Help from '../views/Help.vue'
-import Dashboard from '../views/Dashboard.vue'
+import MyPets from '../views/MyPets.vue'
 
 const routes = [
 
@@ -162,9 +162,9 @@ const routes = [
   },
   
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
+    path: '/mypets',
+    name: 'MyPets',
+    component: MyPets,
     meta: {
       requireLogin: true
     }

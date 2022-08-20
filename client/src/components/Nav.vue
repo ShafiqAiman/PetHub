@@ -54,7 +54,7 @@
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <router-link to="" class="dropdown-item" @click="profileSetupValidation('/myaccount')">My Account</router-link>
-                                <router-link to="" class="dropdown-item" @click="profileSetupValidation('/dashboard')">My Pets</router-link>
+                                <router-link to="" class="dropdown-item" @click="profileSetupValidation('/mypets')">My Pets</router-link>
                                 <router-link to="/settings" class="dropdown-item">Settings</router-link>
                                 <router-link to="/help" class="dropdown-item">Help</router-link>
                                 <router-link to="" class="dropdown-item" @click="logout">Logout</router-link>

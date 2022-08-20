@@ -4,11 +4,11 @@
         <div class="row">
           <div class="col-xs-1 col-md-12">
             <div class="intro">
-              <h1>My Listings</h1>
+              <h1>My Pets</h1>
               <a href="/leaseproperty" class="nav-link" style="color:white;">
                 <button id="addPropertyButton">
                 <img src="../assets/add.png" class="plusIcon">
-                Add a property
+                Add a pet
                 </button>
               </a>
             </div>
@@ -17,37 +17,35 @@
 
         <div class="row">
           <div class="col-md-12 py-auto">
-            <div class="DashboardCards" v-for="myHouse in myHouses" :key="myHouse.id">
+            <div class="DashboardCards" v-for="myPet in myPets" :key="myPet.id">
               <div class="houseDisplayed p-4">
                 <div class="row">
                   <div class="col-md-8">
                     <div class="row">
                       <div class="col-md-6 py-auto">
                         <div class="image">
-                          <img class="housePic rounded" v-if="myHouse.get_uploadphoto1" :src="myHouse.get_uploadphoto1">
+                          <img class="housePic rounded" v-if="myPet.get_uploadphoto1" :src="myPet.get_uploadphoto1">
                           <img class="housePic rounded" v-else :src="defaultImage">
                         </div>
                       </div>
 
                       <div class="col-md-6">
                         <div class="houseHeader">
-                          <template v-if="myHouse.nameOfListing.length >18">
-                            <h3 class="title">{{ myHouse.nameOfListing.substring(0,20)+'...' }}</h3>
+                          <template v-if="myPet.nameOfPet.length >18">
+                            <h3 class="title">{{ myPet.nameOfPet.substring(0,20)+'...' }}</h3>
                           </template>
                           <template v-else>
-                            <h3 class="title">{{ myHouse.nameOfListing }}</h3>
+                            <h3 class="title">{{ myPet.nameOfPet }}</h3>
                           </template>
                         </div>
                     
                         <div class="houseContent">
-                          <b style="color:#175B5B">{{ myHouse.city }}</b><br><br>
-                          <p>RM{{ myHouse.monthlyRent }}/month</p>
-                          <template v-if="myHouse.typeOfListing == 'Entire Place'">
-                            <p>{{ myHouse.typeOfListing }} </p>
+                          <b style="color:#175B5B">{{ myPet.petStatus }}</b><br><br>
+                          
+                          <template v-if="myPet.petStatus == 'Looking for a new Guardian'">
+                            <p>RM{{ myPet.priceofSelling }}</p>
                           </template>
-                          <template v-else>
-                            <p>{{ myHouse.typeOfRoom }} ({{ myHouse.typeOfListing }})</p>
-                          </template>
+                          
                         </div>
                       </div>
                     </div>
@@ -55,10 +53,10 @@
 
                   <div class="col-md-4 py-auto" style="padding:5%;">
                     <div class="options" style="text-align: center;">
-                      <router-link :to="myHouse.get_editproperty_url"> 
+                      <router-link :to="myPet.get_editproperty_url"> 
                         <button id="editButton">Edit</button>
                       </router-link>
-                      <button id="deleteButton" @click="deleteHouse(myHouse.id)">Delete</button>
+                      <button id="deleteButton" @click="deleteHouse(myPet.id)">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -75,11 +73,11 @@
 <script>
 import axios from 'axios'
 export default {
-    name: 'Dashboard',
+    name: 'MyPets',
     data(){
         return{
             user:{},
-            Houses:[],
+            Pets:[],
             filterProperty:'',
             temphousecounter:0,
             tempID:'',
@@ -87,7 +85,7 @@ export default {
         }
     },
     mounted(){
-        document.title = 'Bed & Buddies | My Dashboard'
+        document.title = 'PetHub | My Pets'
         this.getUser()
         this.getHouses()
     },
@@ -117,11 +115,9 @@ export default {
         await axios  //localhost:8000/djangohouses
             .get('/djangohouses') //to get data that is converted by Django REST with the help of Axios
             .then(response => {
-            this.Houses = response.data
-            for (var i = 0; i < this.Houses.length; i++) {
-                this.Results.push(this.Houses[i].nameOfListing)
-                this.Results.push(this.Houses[i].city)
-            }
+            this.Pets = response.data
+            console.log(this.Pets)
+            
             })
             .catch(error => {
               console.log(error)
@@ -142,11 +138,9 @@ export default {
                 .get(`/djangohousemates/${this.user.id}/`)
                 .then(response=>
                 {
-                    this.temphousecounter = response.data.housecounter
-                    this.temphousecounter = this.temphousecounter - 1
-                    console.log("before:" +this.temphousecounter)
+                    this.temphousecounter = response.data.housecounter - 1
                       let formData1 = new FormData()
-                      formData1.append('housecounter', this.temphousecounter)
+                      formData1.append('petcounter', this.temphousecounter)
                       axios
                         .put(`/djangohousemates/${this.user.id}/`, formData1)
                         .then(response=>
@@ -154,10 +148,10 @@ export default {
                             if(this.temphousecounter==0)
                             {
                               axios
-                                .put(`/djangohousemates/${this.user.id}/`, {'HasRoom':this.noproperty})
+                                .put(`/djangohousemates/${this.user.id}/`, {'HasPet':'Has No Pet'})
                                 .then(response=>
                                   {
-                                     console.log(this.user.HasRoom)
+                                     
                                      location.reload()
                                   })
                             }
@@ -171,9 +165,9 @@ export default {
         }  
     },
     computed:{
-        myHouses()
+        myPets()
         {
-        this.filterProperty= this.Houses.filter(myHouse => myHouse.AdvertiserID==this.user.id)
+        this.filterProperty= this.Pets.filter(myPet => myPet.AdvertiserID==this.user.id)
         return this.filterProperty
         }
     }
