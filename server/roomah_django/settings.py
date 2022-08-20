@@ -70,7 +70,7 @@ DJOSER={
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DOMAIN= 'localhost:8080'
-SITE_NAME="Bed & Buddies"
+SITE_NAME="PetHub"
 
 
 MIDDLEWARE = [
