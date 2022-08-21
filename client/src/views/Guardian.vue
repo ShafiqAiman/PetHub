@@ -30,6 +30,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <h2 class="title">{{ housemate.fullname }}</h2>
+                            <h4 class="title"><mark>{{ housemate.HasPet }}</mark></h4>
                             
                             <p>{{ housemate.gender }}, {{ housemate.age }}</p>
                         </div>
